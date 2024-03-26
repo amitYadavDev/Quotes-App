@@ -1,4 +1,5 @@
 package com.amitapps.quotesapp.data.model
 
-class QuoteModel {
-}
+data class QuoteModel (
+    val q: String
+)
