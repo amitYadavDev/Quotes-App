@@ -2,11 +2,35 @@ package com.amitapps.quotesapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.amitapps.quotesapp.R
+import com.amitapps.quotesapp.paging.QuotePagingAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 
+
+@AndroidEntryPoint
 class QuoteActivity : AppCompatActivity() {
+    private val viewModel: QuoteActivityViewModel by viewModels()
+    lateinit var recyclerView: RecyclerView
+    lateinit var quoteAdapter: QuotePagingAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recyclerView = findViewById(R.id.quoteList)
+
+        quoteAdapter = QuotePagingAdapter()
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = quoteAdapter
+
+        viewModel.quoteData.observe(this, Observer {
+            quoteAdapter.submitData(lifecycle, it)
+        })
     }
 }

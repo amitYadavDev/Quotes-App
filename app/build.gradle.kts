@@ -72,4 +72,8 @@ dependencies {
     // paging3
     implementation("androidx.paging:paging-runtime:3.2.1")
 
+
+    // Activity KTX for viewModels()
+    implementation("androidx.activity:activity-ktx:1.8.2")
+
 }
