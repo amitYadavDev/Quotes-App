@@ -2,6 +2,7 @@ package com.amitapps.quotesapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amitapps.quotesapp.R
@@ -9,11 +10,12 @@ import com.amitapps.quotesapp.paging.QuotePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 
 @AndroidEntryPoint
 class QuoteActivity : AppCompatActivity() {
-    private val viewModel: QuoteActivityViewModel by viewModels()
+    lateinit var quoteViewModel: QuoteActivityViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var quoteAdapter: QuotePagingAdapter
 
@@ -22,6 +24,7 @@ class QuoteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.quoteList)
+        quoteViewModel = ViewModelProvider(this).get(QuoteActivityViewModel::class.java)
 
         quoteAdapter = QuotePagingAdapter()
 
@@ -29,7 +32,10 @@ class QuoteActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = quoteAdapter
 
-        viewModel.quoteData.observe(this, Observer {
+        Log.d("quoteViewModel", "  ok")
+
+
+        quoteViewModel.quoteData.observe(this, Observer {
             quoteAdapter.submitData(lifecycle, it)
         })
     }
