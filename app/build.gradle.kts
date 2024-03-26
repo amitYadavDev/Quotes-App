@@ -53,7 +53,7 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
 
 
-    // Hilt
+    // Hilt(di)
     implementation("com.google.dagger:hilt-android:2.50")
     ksp("com.google.dagger:hilt-android-compiler:2.50")
 
@@ -65,5 +65,11 @@ dependencies {
     // Gson (Serialized and Deserialized for Json)
     implementation("com.google.code.gson:gson:2.10")
 
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // paging3
+    implementation("androidx.paging:paging-runtime:3.2.1")
 
 }
