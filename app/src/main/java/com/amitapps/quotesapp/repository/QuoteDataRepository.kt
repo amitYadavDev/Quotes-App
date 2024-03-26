@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class QuoteDataRepository @Inject constructor(private val quoteApiService: QuoteApiService) {
     fun getQuotes() = Pager(
-        config = PagingConfig(pageSize = 20, maxSize = 200),
+        config = PagingConfig(pageSize = 20, maxSize = 100),
         pagingSourceFactory = { QuotePagingSource(quoteApiService) }
     ).liveData
 }

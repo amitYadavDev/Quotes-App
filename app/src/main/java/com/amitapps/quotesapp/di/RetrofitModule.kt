@@ -1,6 +1,7 @@
 package com.amitapps.quotesapp.di
 
 import com.amitapps.quotesapp.data.network.QuoteApiService
+import com.amitapps.quotesapp.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,7 @@ class RetrofitModule {
     @Provides
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }

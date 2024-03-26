@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 
 
 @AndroidEntryPoint
@@ -23,12 +24,12 @@ class QuoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.quoteList)
+        recyclerView = findViewById<RecyclerView>(R.id.quoteList)
         quoteViewModel = ViewModelProvider(this).get(QuoteActivityViewModel::class.java)
 
         quoteAdapter = QuotePagingAdapter()
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = quoteAdapter
 
